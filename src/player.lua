@@ -2,6 +2,7 @@ local min, max, ceil, floor, random = math.min, math.max, math.ceil, math.floor,
 local ld, lf, lg, lm, lv = love.data, love.filesystem, love.graphics, love.mouse, love.video
 local class = require("src.class")
 local Item = require("src.item")
+local funcs = require("src.helper")
 local P = class()
 local Game, Map, Player, Battle, Monster
 --[[
@@ -129,6 +130,10 @@ end
 
 function P:setStat(stat, val)
 	self.data.stats[stat] = self:getStat(stat) + val
+end
+
+function P:SplitStats()
+	return unpack(pairsByKeys(self.data.stats))
 end
 
 function P:equipItem(item, slot)

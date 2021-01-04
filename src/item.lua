@@ -14,14 +14,13 @@ local Game, Map, Player, Battle, Monster
 
 --]]
 
-function Item:init(G, id)
-	Game = G
-	print(7)
-	self.img = "data/img/" .. Game.data.ItemTxt[id]["name"] .. ".png"
+function Item:init(Game, id)
+	self.name = Game.data.itemText[id][1]
+	self.img = "data/img/item/" .. self.name:gsub(" ",""):lower() .. ".png"
 	self.imgObj = lg.newImage(self.img)
 	self.id = id
-	self.power = Game.data.itemTxt[id].power
-	self.type = Game.data.itemTxt[id]["type"]
+	self.power = Game.data.itemText[id].power
+	self.type = Game.data.itemText[id]["type"]
 end
 
 return Item
