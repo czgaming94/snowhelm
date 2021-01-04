@@ -237,7 +237,21 @@ function G:GUI()
 	lg.rectangle("fill", 0, 550, 800, 50)
 	lg.setColor(1,1,1,1)
 	lg.rectangle("line", -1, 549, 802, 50)
-	lg.print("Gold: " .. Player.data.gold, self.data.fonts.fancy, 10, 567)
+	local font = lg.getFont()
+	if font ~= self.data.fonts.fancy then lg.setFont(self.data.fonts.fancy) font = lg.getFont() end
+	local x = 10
+	lg.print("Gold: " .. Player.data.gold, x, 567)
+	x = x + font:getWidth("Gold: " .. Player.data.gold) + 30
+	
+	lg.print("HP: ", x, 567)
+	x = x + font:getWidth("HP: ") + 5
+	
+	lg.print(Player.data.hp .. "/" .. Player.data.hpMax, x, 567)
+	x = x + font:getWidth(Player.data.hp .. "/" .. Player.data.hpMax) + 30
+	
+	lg.print("MP: ", x, 567)
+	x = x + font:getWidth("MP: ") + 5
+	lg.print(Player.data.mp .. "/" .. Player.data.mpMax, x, 567)
 end
 
 function G:setSelf()

@@ -36,7 +36,7 @@ function P:init(G,classType,stats,name,x,y,tile)
 		level = 1,
 		hpScale = 1,
 		mpScale = 1,
-		pet = love.graphics.newImage("data/img/simon.png"),
+		pet = lg.newImage("data/img/simon.png"),
 		items = {
 			equipped = {
 				helm = {item = nil, useable = true},
