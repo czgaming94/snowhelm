@@ -17,10 +17,11 @@ local Game, Map, Player, Battle, Monster
 function Item:init(G, id)
 	Game = G
 	print(7)
-	self.img = nil -- "data/img/" .. Game.data.ItemTxt[id]["name"] .. ".png"
+	self.img = "data/img/" .. Game.data.ItemTxt[id]["name"] .. ".png"
+	self.imgObj = lg.newImage(self.img)
 	self.id = id
-	self.damage = nil -- Game.data.ItemTxt[id]["damage"]
-	self.type = nil -- Game.data.ItemTxt[id]["type"]
+	self.power = Game.data.itemTxt[id].power
+	self.type = Game.data.itemTxt[id]["type"]
 end
 
 return Item

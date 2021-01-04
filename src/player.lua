@@ -1,6 +1,7 @@
 local min, max, ceil, floor, random = math.min, math.max, math.ceil, math.floor, love.math.random
 local ld, lf, lg, lm, lv = love.data, love.filesystem, love.graphics, love.mouse, love.video
 local class = require("src.class")
+local Item = require("src.item")
 local P = class()
 local Game, Map, Player, Battle, Monster
 --[[
@@ -60,34 +61,25 @@ function P:addItem(Game, id, amount, quality)
 	local itemText = ""
 	
 	quality = quality and quality or 1
-	if quality > 1 then
-		-- todo : Increase item quality based on quality
-	else 
-		if id == 0 then
-			--local gold = random(1, 100 + ceil((Player.data.level * Player.data.stats.LUCK.value) / 5))
-			--local gold = random(0, self:calcMaxGold())
-			
-			--if(self:add("gold", gold)) then
-			--	itemText = itemText .. "@@@" .. tostring(gold) .. " Gold"
-			--end
-		else
-			print(table.show(Game.data.items))
-			print(id)
-			local item = table.get(Game.data.items, id, true)
-			print(item)
-			local itemCount = 0
-			if item then
-				print(item)
-				print(table.show(item))
-				if amount then
-					while itemCount < amount do
-						table.insert(self.data.items.bag, item)
-						itemText = itemText .. "@@@" .. item.name
-						itemCount = itemCount + 1
-					end
-				else
+	
+	if id == 0 then
+		-- Randomize item
+	else
+		print(table.show(Game.data.items))
+		print(id)
+		--local item = table.get(Game.data.items, id, true)
+		local item = Item(Game, id)
+		local itemCount = 0
+		if item then
+			print(table.show(item))
+			if amount then
+				while itemCount < amount do
+					table.insert(self.data.items.bag, item)
 					itemText = itemText .. "@@@" .. item.name
+					itemCount = itemCount + 1
 				end
+			else
+				itemText = itemText .. "@@@" .. item.name
 			end
 		end
 	end
