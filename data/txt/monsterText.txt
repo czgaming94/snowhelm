@@ -1,0 +1,5 @@
+#ID	Name	Damage	Health	AC	Level	Special_Skill	Resistances	Stats	MAPS	ItemTiers	MaxItems	Gold	Size
+1	Giant Bug	1d5	3d3	2	1	0	-2,1,4	4,5,2,0,0,3,7,2	1,2,3,4,	1,2	2	5d2	50,50
+2	Giant Rat	1d3	3d2	1	1	0	1,-4,1	2,2,2,0,0,2,4,2	1,2,3,4,5	1	1	1d3	50,50
+3	Wolf	2d3	3d5	4	2	BITE	-2,2,-5	5,5,5,2,4,6,8,6	1,2,3,4,5,6,7,8	1,2,3	3	4d6	50,50
+4	Raider	3d3	5d3	5	4	LUNGE	-1,-2,-2	6,5,4,2,2,4,5,5	1,2,3,4,5,6	1,2,3,4	3	8d5	75,200

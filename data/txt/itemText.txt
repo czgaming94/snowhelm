@@ -1,0 +1,6 @@
+#ID	Name	Type	Power	Description	Tier	Droppable	CanEnchant
+1	Bomb	item	0	Used to destroy objects on the map.	1	N	N
+2	Wooden Sword	weapon	2	A wooden sword you were given as a child.	1	N	N
+3	Cloth Shirt	armor	2	Your only shirt. It may be time to upgrade.	1	N	N
+4	Rusty Sword	weapon	5	A rusty sword found in the field.	1	Y	Y
+5	Leather Chestpiece	armor	4	A poorly tanned leather chestpiece.	1	Y	Y

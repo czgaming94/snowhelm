@@ -1,0 +1,6 @@
+#ID	TEXT
+1	Currently In: [Hale Region]@@@[North] - Barren Highlands@@@[East] - Gnosh Lake@@@[West] - Forest@@@[South] - Valley of the Lost
+2	Currently In: [Hale Region]@@@[Northeast] - Barren Highlands@@@[Southwest] - Frozen Plateau@@@[Southeast] - Hale Valley
+3	Currently In: [Hale Region]@@@[North] - Barren Highlands@@@[South] - Hale Valley@@@[Southeast] - Gnosh Lake@@@[Southwest] - Frozen Plateau@@@[West] - Mysterious Crypt
+4	Currently In: [Hale Region]@@@[North] - Barren Highlands@@@[East] - Cherric Hills@@@[South] - Valley of the Lost
+5	Currently In: [Hale Region]@@@[East] - Cherric Hills@@@[South] - Valley of the Lost@@@[West] - Frozen Plateau

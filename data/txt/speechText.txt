@@ -1,0 +1,2 @@
+#ID	TEXT
+1	Welcome to Snowhelm. To rest, visit your home or the inn! Good luck, adventurer.
