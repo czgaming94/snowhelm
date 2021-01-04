@@ -57,11 +57,11 @@ function Monster:hurt(dmg)
 	local m = self
 	if dmg > m.hp then
 		Battle.rewards.gold = Battle.rewards.gold + m.gold
-		Info("You dealt " .. dmg .. " damage to " .. m.name .. " dealing the killing blow!")
+		Game:Info("You dealt " .. dmg .. " damage to " .. m.name .. " dealing the killing blow!")
 		table.insert(Battle.rewards, m:generateItems())
 		table.remove(Battle.monsters, id)
 	else
-		Info("You dealt " .. tostring(dmg) .. " damage to " .. m.name .. "!")
+		Game:Info("You dealt " .. tostring(dmg) .. " damage to " .. m.name .. "!")
 		m.hp = m.hp - dmg
 	end
 end

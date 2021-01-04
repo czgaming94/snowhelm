@@ -1,6 +1,7 @@
 local min, max, ceil, floor, random = math.min, math.max, math.ceil, math.floor, love.math.random
 local ld, lf, lg, lm, lv = love.data, love.filesystem, love.graphics, love.mouse, love.video
 local class = require("src.class")
+local Tile = require("src.tile")
 local M = class()
 local Game, Map, Player, Battle, Monster
 --[[
@@ -37,6 +38,22 @@ function M:init(Game, img, startX, startY, startBlock, id, audio)
 	self.data.height = self.data.printed:getHeight()
 	self.data.obj = lg.newQuad(0,0,self.data.width,self.data.height,self.data.printed:getDimensions())
 	self:setBattleBG()
+end
+
+function M:generateTiles()
+	local tileCount = 1
+	local y = 0
+	while y < 2800 do
+		local x = 0
+		while x < 4200 do
+			if not self.data.tiles[tileCount] or self.data.tiles[tileCount].display then 
+				table.insert(self.data.tiles, tileCount, Tile(x,y,tileCount))
+			end
+			x = x + 50
+			tileCount = tileCount + 1
+		end
+		y = y + 50
+	end
 end
 
 function M:setBattleBG()

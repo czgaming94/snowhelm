@@ -3,6 +3,7 @@ local ld, lf, lg, lm, lv = love.data, love.filesystem, love.graphics, love.mouse
 local class = require("src.class")
 local serpent = require("src.serpent")
 local G = class()
+local B = require("src.battle")
 local Game, Map, Player, Battle, Monster
 --[[
 
@@ -81,6 +82,25 @@ function G:init()
 	}
 	self:loadFiles()
 	Game = self
+end
+
+function G:setSnap(img)
+	Game.data.showOverlay = true
+	Game.data.snapshot = lg.newImage(self)
+	Game.data.fadescreen = {"fill", 0, 0, lg.getWidth(), lg.getHeight()}
+	Game.data.canMove = false
+	if Game.data.animateFrom == "battle" then Game:makeBattle() end
+	if Game.data.animateFrom == "rest" then Game:makeRest() end
+end
+
+function G:makeRest()
+	self.data.showRestScreen = true
+end
+
+function G:makeBattle()
+	self.data.showBattleAnimation = true
+	self.data.battle = B(self)
+	Battle = self.data.battle
 end
 
 function G:loadFiles()

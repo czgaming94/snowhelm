@@ -56,10 +56,10 @@ function B:calcDamageToMonster(id)
 		if damage > 0 then
 			m:hurt(damage)
 		else
-			Info(m.name .." dodged your attack!")
+			Game:Info(m.name .." dodged your attack!")
 		end
 	else
-		Info(m.name .." dodged your attack!")
+		Game:Info(m.name .." dodged your attack!")
 	end
 end
 
