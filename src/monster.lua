@@ -67,15 +67,15 @@ function Monster:hurt(dmg)
 end
 
 function Monster:calcEvasion()
-	return (random(1,100) + ceil((self.level + ceil(self:getStat("SPEED") / 2)) / 2) + ceil(self:getStat("LUCK") / 2))
+	return (random(1,100) + ceil((self.level + ceil(self:getStat("speed") / 2)) / 2) + ceil(self:getStat("luck") / 2))
 end
 
 function Monster:getStat(stat)
-	return self.stats[stat].value
+	return self.stats[stat:upper()].value
 end
 
 function Monster:setStat(stat, newVal)
-	self.stats[stat].value = newVal
+	self.stats[stat:upper()].value = newVal
 end
 
 function Monster:SplitStats()

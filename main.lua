@@ -56,8 +56,7 @@ function love.keypressed( key, scancode, isrepeat )
 			if key == "i" then
 			
 			end
-			if table.find({"up", "down", "left", "right", "w", "a", "s", "d"}, key) then		
-				local modifier = 0
+			if table.find({"up", "down", "left", "right", "w", "a", "s", "d"}, key) then
 				local moveX,moveY = Map.data.x, Map.data.y
 				local pMoveX,pMoveY = Player.data.x, Player.data.y
 				local tiles = Map.data.tiles
@@ -240,7 +239,7 @@ end
 --]]
 function love.draw()
 	if type(Game.data.fonts.header) == "string" then Game.data.fonts.header = lg.newFont("data/font/header.ttf", 20) end
-
+	lg.setFont(Game.data.fonts.text)
 	lg.scale( sw / 1280, sh / 720 )
 	lg.setColor(1,1,1,1)
 	if Game.data.gameState < 2 then 
@@ -322,10 +321,11 @@ function love.draw()
 		if not Game.data.showBattleAnimation and Game.data.showBattle then
 			lg.draw(Game.data.battle.bgObj, 0, 0)
 			if not Battle and allowBattle then
-				Game:generateBattle()
+				--Game:generateBattle()
 				Battle = Game.data.battle
 			end
 			Game:showMonsters(Battle)
+			Battle:GUI()
 		elseif Game.data.showBattleAnimation then
 			lg.draw(Game.data.snapshot, 0, 0)
 			lg.setColor(Game.data.fadeColorBlack)

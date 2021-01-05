@@ -1,6 +1,7 @@
 local min, max, ceil, floor, random = math.min, math.max, math.ceil, math.floor, love.math.random
 local ld, lf, lg, lm, lv = love.data, love.filesystem, love.graphics, love.mouse, love.video
 local class = require("src.class")
+local funcs = require("src.helper")
 local serpent = require("src.serpent")
 local G = class()
 local B = require("src.battle")
@@ -164,7 +165,7 @@ function G:setMonsters()
 		m.skill = monster[6]
 		m.resistances = monster[7]
 		m.stats = string.split(monster[8], ",", "number")
-		stats.ACCURACY.value,stats.AGILITY.value,stats.ENDURANCE.value,stats.INTELLECT.value,stats.LUCK.value,stats.PERCEPTION.value,stats.SPEED.value,stats.STRENGTH.value = m.stats[1],m.stats[2],m.stats[3],m.stats[4],m.stats[5],m.stats[6],m.stats[7],m.stats[8]
+		stats.ACCURACY.value,stats.AGILITY.value,stats.ENDURANCE.value,stats.INTELLECT.value,stats.LUCK.value,stats.PERCEPTION.value,stats.SPEED.value,stats.STRENGTH.value = unpack(m.stats)
 		m.stats = stats
 		m.maps = monster[9]
 		m.itemTiers = monster[10]
@@ -172,6 +173,7 @@ function G:setMonsters()
 		local size = string.split(monster[13], ",")
 		m.w = size[1]
 		m.h = size[2]
+		m.sprite = "data/img/sprite/" .. monster[14] .. ".png"
 		
 		self.data.monsters[monster[1]:lower():gsub("%s+","")] = m
 	end
@@ -251,6 +253,7 @@ function G:GUI()
 	
 	lg.print("MP: ", x, 567)
 	x = x + font:getWidth("MP: ") + 5
+	
 	lg.print(Player.data.mp .. "/" .. Player.data.mpMax, x, 567)
 end
 

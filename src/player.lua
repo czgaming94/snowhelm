@@ -48,7 +48,8 @@ function P:init(G,classType,stats,name,x,y,tile)
 				-- Offhand TODO useable at level 5
 			},
 			bag = {}
-		}
+		},
+		sprite = "data/img/sprite/plspr.png"
 	}
 	if self.data.class == "stealth" then self.data.hpScale = 2.25 self.data.mpScale = 2.25 end
 	if self.data.class == "melee" then self.data.hpScale = 1.5 self.data.mpScale = 3.0 end
@@ -96,7 +97,7 @@ end
 
 function P:calcHitChance(battle)
 	if not battle then return false end
-	return (random(1,100) + ceil((self.data.level + ((self:getStat("ACCURACY") - battle.currentTarget.level) + ceil(self:getStat("SPEED") / 2)) - battle.currentTarget.level) / 2))
+	return (random(1,100) + ceil((self.data.level + ((self:getStat("accuracy") - battle.currentTarget.level) + ceil(self:getStat("speed") / 2)) - battle.currentTarget.level) / 2))
 end
 
 function P:calcWeaponDamage()
@@ -125,11 +126,11 @@ function P:setPos(tile)
 end
 
 function P:calcMaxGold()
-	local luck = self:getStat("LUCK")
+	local luck = self:getStat("luck")
 end
 
 function P:setStat(stat, val)
-	self.data.stats[stat] = self:getStat(stat) + val
+	self.data.stats[stat:upper()] = self:getStat(stat:upper()) + val
 end
 
 function P:SplitStats()
@@ -173,7 +174,7 @@ end
 --]]
 
 function P:getStat(stat)
-	return self.data.stats[stat].value
+	return self.data.stats[stat:upper()].value
 end
 
 function P:setStat(stat, newVal)
