@@ -144,6 +144,7 @@ function love.load(t)
 	Game.data.fonts.header = lg.newFont("data/font/header.ttf", 20)
 	Game.data.fonts.fancy = lg.newFont("data/font/header.ttf", 14)
 	Game.data.fonts.text = lg.newFont(16)
+	Game.data.fonts.gui = lg.newFont("data/font/pix.ttf", 12)
 	Game.data.clickAudio = la.newSource("data/audio/click.mp3", "static")
 	local files = lf.getDirectoryItems("/")
 	for k,i in ipairs(files) do
@@ -152,7 +153,7 @@ function love.load(t)
 			item.file = i
 			item.boxColor = {1,1,1,.5}
 			item.textColor = {0,0,0,.5}
-			table.insert(Game.data.saves, item)
+			Game.data.saves[#Game.data.saves + 1] = item
 		end
 	end
 	

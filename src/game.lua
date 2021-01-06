@@ -110,8 +110,8 @@ function G:loadFiles()
 			if string.sub(line, 1, 1) == "#" then goto notTxtItem end
 			local dataText = split("\t", line)
 			local send = {}
-			for k,i in pairs(dataText) do if k ~= 1 then table.insert(send, i) end end
-			table.insert(self.data[file], tonumber(dataText[1]), send)
+			for k,i in pairs(dataText) do if k ~= 1 then send[#send + 1] = i end end
+			self.data[file][tonumber(dataText[1])] = send
 			::notTxtItem::
 		end
 	end
@@ -242,18 +242,31 @@ function G:GUI()
 	local font = lg.getFont()
 	if font ~= self.data.fonts.fancy then lg.setFont(self.data.fonts.fancy) font = lg.getFont() end
 	local x = 10
-	lg.print("Gold: " .. Player.data.gold, x, 567)
-	x = x + font:getWidth("Gold: " .. Player.data.gold) + 30
+	lg.print("Gold: ", x, 567)
+	x = x + font:getWidth("Gold: ") + 5
+	lg.setFont(self.data.fonts.gui)
+	font = lg.getFont()
 	
+	lg.print(Player.data.gold, x, 567)
+	x = x + font:getWidth(Player.data.gold) + 30
+	
+	lg.setFont(self.data.fonts.fancy)
+	font = lg.getFont()
 	lg.print("HP: ", x, 567)
 	x = x + font:getWidth("HP: ") + 5
 	
+	lg.setFont(self.data.fonts.gui)
+	font = lg.getFont()
 	lg.print(Player.data.hp .. "/" .. Player.data.hpMax, x, 567)
 	x = x + font:getWidth(Player.data.hp .. "/" .. Player.data.hpMax) + 30
 	
+	lg.setFont(self.data.fonts.fancy)
+	font = lg.getFont()
 	lg.print("MP: ", x, 567)
 	x = x + font:getWidth("MP: ") + 5
 	
+	lg.setFont(self.data.fonts.gui)
+	font = lg.getFont()
 	lg.print(Player.data.mp .. "/" .. Player.data.mpMax, x, 567)
 end
 
