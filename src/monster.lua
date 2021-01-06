@@ -25,7 +25,7 @@ function Monster:init(G)
 	local num = Game.data.maps[Map.data.img:gsub("data/img/", ""):gsub(".png", "")]
 	local allowedMonsters = {}
 	for key,m in pairs(Game.data.monsters) do
-		if string.match(m.maps, tostring(num)) then table.insert(allowedMonsters, m) end
+		if string.match(m.maps, tostring(num)) then allowedMonsters[#allowedMonsters + 1] = m end
 	end
 	local monType = allowedMonsters[random(1, #allowedMonsters)]
 	for k,v in pairs(monType) do self[k] = v end
@@ -41,13 +41,13 @@ function Monster:generateItems()
 	local allowedItems = {}
 	
 	for k, v in pairs(Game.data.items) do
-		if string.match(self.itemTiers, v.tier) then table.insert(allowedItems, v) end
+		if string.match(self.itemTiers, v.tier) then allowedItems[#allowedItems + 1] = v end
 	end
 	
 	local i = 0
 	
 	while i < random(0, tonumber(self.maxItems)) do
-		table.insert(items, allowedItems[random(1, #allowedItems)])
+		items[#items + 1] = allowedItems[random(1, #allowedItems)]
 		i = i +1
 	end
 	return items
@@ -58,7 +58,7 @@ function Monster:hurt(dmg)
 	if dmg > m.hp then
 		Battle.rewards.gold = Battle.rewards.gold + m.gold
 		Game:Info("You dealt " .. dmg .. " damage to " .. m.name .. " dealing the killing blow!")
-		table.insert(Battle.rewards, m:generateItems())
+		Battle.rewards[#Battle.rewards + 1] = m:generateItems()
 		table.remove(Battle.monsters, id)
 	else
 		Game:Info("You dealt " .. tostring(dmg) .. " damage to " .. m.name .. "!")

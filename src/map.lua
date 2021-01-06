@@ -47,7 +47,7 @@ function M:generateTiles()
 		local x = 0
 		while x < 4200 do
 			if not self.data.tiles[tileCount] or self.data.tiles[tileCount].display then 
-				table.insert(self.data.tiles, tileCount, Tile(x,y,tileCount))
+				self.data.tiles[tileCount] = Tile(x,y,tileCount)
 			end
 			x = x + 50
 			tileCount = tileCount + 1

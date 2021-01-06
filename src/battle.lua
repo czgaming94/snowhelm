@@ -30,7 +30,7 @@ function B:init(G)
 	local start = 1
 	while start <= number do
 		monster = Monster(Game)
-		table.insert(self.monsters, monster)
+		self.monsters[#self.monsters + 1] = monster
 		start = start + 1
 	end
 	self.totalMonsters = #self.monsters
@@ -92,9 +92,9 @@ function B:calcTurns()
 	local speeds = {}
 	
 	for key, val in pairs(monsters) do
-		table.insert(speeds, #speeds + 1, {speed = val.stats.SPEED.value, sprite = lg.newImage(val.sprite)})
+		speeds[#speeds + 1] = {speed = val.stats.SPEED.value, sprite = lg.newImage(val.sprite)}
 	end
-	table.insert(speeds, #speeds + 1, {speed = playerSpeed, sprite = lg.newImage(Player.data.sprite)})
+	speeds[#speeds + 1] = {speed = playerSpeed, sprite = lg.newImage(Player.data.sprite)}
 	table.sort(speeds, function(a,b) return a.speed > b.speed end)
 	print(table.show(speeds))
 	monsters = nil

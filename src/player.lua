@@ -76,7 +76,7 @@ function P:addItem(Game, id, amount, quality)
 			print(table.show(item))
 			if amount then
 				while itemCount < amount do
-					table.insert(self.data.items.bag, item)
+					self.data.items.bag[#self.data.items.bag + 1] = item
 					itemText = itemText .. "@@@" .. item.name
 					itemCount = itemCount + 1
 				end
