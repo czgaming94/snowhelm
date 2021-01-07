@@ -116,4 +116,16 @@ function B:GUI()
 	end
 end
 
+function B:remove()
+	print(1)
+	Game.data.showOverlay = false
+	Game.data.canMove = true
+	Game.data.showBattle = false
+	Game.data.showInventory = false
+	Game.data.showLoot = false
+	Game.data.battle = nil
+	Game.data.activeText = ""
+	Game.data.battle = nil
+end
+
 return B

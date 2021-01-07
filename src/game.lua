@@ -79,7 +79,8 @@ function G:init()
 		showOverlay = false,
 		animateFrom = "",
 		musicFiles = {},
-		mapMusic = nil
+		mapMusic = nil,
+		imgTypes = {["treebottom"]={-6,-9}, ["treetop"]={-6,-6}, ["smallrock"]={3,0}, ["chest"]={3,10}, ["chestopen"]={3,10}, ["shrub"]={-6,2}, ["treelogleft"]={3,10}, ["treelogright"]={3,10}, ["signpost"]={11,10}, ["stump"]={0,0}}
 	}
 	self:loadFiles()
 	Game = self
@@ -188,15 +189,9 @@ function G:showMonsters(battle)
 			battle:giveItems()
 			battle.shownItems = true
 		else
-			Game.data.showOverlay = false
-			Game.data.canMove = true
-			Game.data.showBattle = false
-			Game.data.showInventory = false
-			Game.data.showLoot = false
-			Game.data.battle = nil
-			Game.data.activeText = ""
-			return
+			self:remove()
 		end
+		return
 	end
 	local midRange = 416 - (32 * count - 1)
 	local curPos = midRange - 32

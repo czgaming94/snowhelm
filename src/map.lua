@@ -73,7 +73,6 @@ end
 function M:displayTiles(Game)
 	if not GHG or GHG < 10 then
 		if not GHG then GHG = 0 end
-		print(5)
 		GHG = GHG + 1
 	end
 	self = Game.data.Map
@@ -92,26 +91,20 @@ function M:displayTiles(Game)
 			if type(Player.data.tile) == "number" then Player.data.tile = self.data.tiles[Player.data.tile] end
 			if (index.x >= Player.data.tile.x - 400 and index.x <= Player.data.tile.x + 400) and (index.y >= Player.data.tile.y - 300 and index.y <= Player.data.tile.y + 300) then
 				if index.img then 
-					local x, y = index.x, index.y
+					local x, y
 					if index.img.imgType == "chestopen" then
 						if not index.fixed then
 							index.img.imgObj = lg.newImage("data/img/" .. index.img.imgType .. ".png")
 							index.fixed = true
 						end
 					end
-					if type(index.img.imgObj) == "string" then index.img.imgObj = lg.newImage("data/img/" .. index.img.imgType .. ".png") end
-					if index.img.imgType == "treebottom" or index.img.imgType == "treetop" then x = x - 6 y = y - 9 end
-					if index.img.imgType == "smallrock" then x = x + 3 end
-					if index.img.imgType == "chest" or index.img.imgType == "chestopen" then x = x + 3 y = y + 10 end
-					if index.img.imgType == "shrub" then x = x - 6 y = y + 2 end
-					if index.img.imgType == "treelogleft" or index.img.imgType == "treelogright" then x = x + 3 y = y + 10 end
-					if index.img.imgType == "signpost" then x = x + 11 y = y + 10 end
-					if index.img.imgType == "stump" then x = x y = y end
-					lg.draw(index.img.imgObj, x, y)
+					if type(index.img.imgObj) == "string" then index.img.imgObj = lg.newImage("data/img/" .. index.img.imgType .. ".png") end					
+					x,y = unpack(Game.data.imgTypes[index.img.imgType])
+					lg.draw(index.img.imgObj, index.x + x, index.y + y)
 				end
-				lg.print(key, index.x, index.y)
+				--lg.print(key, index.x, index.y)
 			end
-			lg.rectangle("line",index.x,index.y,50,50)
+			--lg.rectangle("line",index.x,index.y,50,50)
 		end
 	end
 	lg.rectangle("line", 0, 0, 4200, 2800)
@@ -121,7 +114,6 @@ function M:displayTiles(Game)
 end
 
 function M:setTiles()
-	print(2)
 	local map = self.data.img:gsub("data",""):gsub("img",""):gsub("/",""):gsub(".png","")
 	if not lf.getInfo("data/events/" .. map .. ".lua") then return false end
 	

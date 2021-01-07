@@ -14,7 +14,7 @@ local Icon = require("src.icon")
 local Mon = require("src.monster")
 local Game, Map, Player, Battle, Icons, BG
 local introVideo = lg.newVideo(lv.newVideoStream("data/video/intro.ogg"))
-local showIntro = false
+local showIntro = true
 local allowBattle = true
 
 ------------------------------------------------------------------------------------------------------------------------------
@@ -112,8 +112,7 @@ function love.keypressed( key, scancode, isrepeat )
 					Game.data.activeText = ""
 				end
 				if Game.data.battle and #Game.data.battle.monsters == 0 then
-					Game.data.showBattle = false
-					Game.data.battle = nil
+					Game.data.battle:remove()
 				end
 			end
 		end
@@ -489,7 +488,10 @@ function love.mousepressed(x, y, button, istouch)
 			elseif Game.data.showNewGameFinal then
 				Game.data.showNewGameFinal = false
                 Game.data.gameState = 3
-				if showIntro then introVideo:play() end
+				if showIntro then
+					if Game.data.mainMenuAudio:isPlaying() then Game.data.mainMenuAudio:stop() end
+					introVideo:play() 
+				end
             end
 		end
 		
