@@ -113,7 +113,6 @@ function table.get(t, g, single, parent)
 	parent = parent or t
 	local results = false
 	if not single then results = {} end
-	local topKeys = table.keys(t)
 	for k, v in pairs(t) do
 		if type(v) == "table" then
 			if parent ~= t then parent = parent[t] end
@@ -151,7 +150,7 @@ function table.get(t, g, single, parent)
 					end
 				end
 			else
-				if (table.has(topKeys, g) and k == g) or v == g then
+				if (table.has(table.keys(t), g) and k == g) or v == g then
 					if parent ~= t then
 						table.insert(results, parent[t])
 					else
@@ -161,7 +160,7 @@ function table.get(t, g, single, parent)
 			end
 		end
 	end
-	return results
+	return results[1]
 end
 
 function table.keys(t)
@@ -201,7 +200,7 @@ end
 
 function table.execute(t, f, ...)
 	for k, v in pairs(t) do
-		if v[f] then v[f](arg) end
+		if v[f] then v[f](...) end
 	end
 end
 
@@ -288,4 +287,8 @@ function doDebug(text) print(text) end
 
 function Sleep(n)
 	love.timer.sleep(n)
+end
+
+local is_int = function(n)
+	return (type(n) == "number") and (math.floor(n) == n)
 end
